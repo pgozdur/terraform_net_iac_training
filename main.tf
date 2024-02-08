@@ -82,7 +82,7 @@ resource "aws_key_pair" "deployer_key" {
 # EC2 Instances
 resource "aws_instance" "lab_instance" {
   count         = 14
-  ami           = "ami-123456" # Replace with the actual AMI ID for Ubuntu 22.04 in Frankfurt
+  ami           = "ami-0faab6bdbac9486fb"
   instance_type = var.instance_type
   key_name      = aws_key_pair.deployer_key.key_name
   subnet_id     = aws_subnet.lab_subnet.id
