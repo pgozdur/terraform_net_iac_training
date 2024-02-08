@@ -9,11 +9,11 @@ output "instance_tags" {
 }
 
 output "instance_public_ips" {
-  value = { for instance in aws_instance.lab_instance : instance.tags["Name"] => instance.public_ip }
+  value = { for instance in aws_instance.lab_instance : instance.tags["Name"] => instance.public_ip => instance }
   description = "The public IP addresses of the EC2 instances"
 }
 
 output "ssh_commands" {
-  value = [for instance in aws_instance.lab_instance : "ssh -i ${path.module}/${var.key_name} ubuntu@${instance.public_ip}"]
+  value = [for instance in aws_instance.lab_instance : instance.tags["Name"] "ssh -i ${path.module}/${var.key_name} ubuntu@${instance.public_ip}"]
   description = "Commands to SSH into each EC2 instance. Ensure your private key permissions are set correctly."
 }
