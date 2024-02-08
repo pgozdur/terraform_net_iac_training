@@ -5,7 +5,7 @@ output "instance_external_dns" {
 
 output "instance_tags" {
   value = [for instance in aws_instance.lab_instance : instance.tags["Name"]]
-  description = "The tags (e.g., student_1) of the EC2 instances"
+  description = "The tags of the EC2 instances"
 }
 
 output "instance_public_ips" {
@@ -14,6 +14,6 @@ output "instance_public_ips" {
 }
 
 output "ssh_commands" {
-  value = [for instance in aws_instance.lab_instance : "ssh -i /path/to/your/private/key.pem ubuntu@${instance.public_ip}"]
-  description = "Commands to SSH into each EC2 instance. Replace '/path/to/your/private/key.pem' with the actual path to your SSH private key."
+  value = [for instance in aws_instance.lab_instance : "ssh -i ${path.module}/${var.key_name} ubuntu@${instance.public_ip}"]
+  description = "Commands to SSH into each EC2 instance. Ensure your private key permissions are set correctly."
 }
