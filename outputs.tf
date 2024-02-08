@@ -14,6 +14,6 @@ output "instance_public_ips" {
 }
 
 output "ssh_commands" {
-  value = [for instance in aws_instance.lab_instance : instance.tags["Name"] "ssh -i /path/to/your/private/key.pem ubuntu@${instance.public_ip}"]
+  value = [for instance in aws_instance.lab_instance : "ssh -i /path/to/your/private/key.pem ubuntu@${instance.public_ip}"]
   description = "Commands to SSH into each EC2 instance. Replace '/path/to/your/private/key.pem' with the actual path to your SSH private key."
 }
