@@ -75,8 +75,8 @@ resource "aws_security_group" "lab_sg" {
 
 # SSH Key Pair
 resource "aws_key_pair" "deployer_key" {
-  key_name   = var.key_name
-  public_key = file("${path.module}/${var.key_name}.pub")
+  key_name   = "terraform-ec2-key"
+  public_key = file("${path.module}/terraform-ec2-key.pub")
 }
 
 # EC2 Instances
