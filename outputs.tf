@@ -14,6 +14,6 @@ output "instance_public_ips" {
 }
 
 output "ssh_commands" {
-  value = [for instance in aws_instance.lab_instance : "ssh -i terraform-ec2-key ubuntu@${instance.public_ip}  |  {instance.tags["Name"]}"]
+  value = [for instance in aws_instance.lab_instance : "ssh -i terraform-ec2-key ubuntu@${instance.public_ip}"]
   description = "Commands to SSH into each EC2 instance. Assumes key terraform-ec2-key in current folder"
 }
